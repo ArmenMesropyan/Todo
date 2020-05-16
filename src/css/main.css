@@ -43,6 +43,7 @@ img {
 }
 
 .container {
+    position: relative;
     max-width: 960px;
     margin: 0 auto;
     padding: 0 20px;
@@ -52,12 +53,16 @@ img {
 /* Reset */
 
 .logo__title,
-.main-header__actions {
+.main-header__actions,
+.todo-lists__list,
+.todo-lists__actions {
     margin: 0;
     padding: 0;
 }
 
-.main-header__actions {
+.main-header__actions,
+.todo-lists__list,
+.todo-lists__actions {
     list-style: none;
 }
 
@@ -112,3 +117,78 @@ img {
 
 
 /* Grids */
+
+
+/* --------------------------------------- */
+
+
+/* Todo List  */
+
+
+/* Basic styles */
+
+.todo-lists__item {
+    background-color: rgb(92, 200, 191);
+    color: #fff;
+}
+
+.todo-lists__title {
+    font-size: 20px;
+}
+
+.todo-list__checkbox label {
+    font-size: 0;
+}
+
+.todo-list__checkbox input:checked {
+    cursor: pointer;
+}
+
+.todo-list__checkbox input::before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    border: 1px solid rgba(0, 0, 0, 0.315);
+    cursor: pointer;
+    background-size: 100%;
+}
+
+.todo-list__checkbox input:checked::before {
+    display: block;
+    background-image: url(../img/checked.png);
+}
+
+.todo-lists__aciton button {
+    font-size: 0;
+    border: none;
+}
+
+.todo-lists__aciton_edit button {
+    background-color: #11eff6;
+    background-image: url(../img/edit.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 0 10px;
+    border-radius: 50%;
+    max-height: 25px;
+}
+
+.todo-lists__aciton_delete button {
+    background-color: #fff;
+    background-image: url(../img/delete.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 0 10px;
+    border-radius: 50%;
+    max-height: 25px;
+    background-size: 50%;
+}
+
+
+/* Grids  */
+
+
+/* ----------------------------------------------- */
