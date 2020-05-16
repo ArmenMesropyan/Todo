@@ -55,7 +55,11 @@ img {
 .logo__title,
 .main-header__actions,
 .todo-lists__list,
-.todo-lists__actions {
+.todo-lists__actions,
+.todo-list__checkbox,
+.todo-lists__title,
+.todo-lists__aciton,
+.todo-list__checkbox label {
     margin: 0;
     padding: 0;
 }
@@ -129,7 +133,12 @@ img {
 
 .todo-lists__item {
     background-color: rgb(92, 200, 191);
+    border-radius: 20px;
     color: #fff;
+}
+
+.todo-lists__item_done .todo-lists__title {
+    text-decoration: line-through;
 }
 
 .todo-lists__title {
