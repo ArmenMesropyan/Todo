@@ -43,7 +43,7 @@ img {
 }
 
 .container {
-    max-width: 1180px;
+    max-width: 960px;
     margin: 0 auto;
     padding: 0 20px;
 }
@@ -87,6 +87,27 @@ img {
 
 .theme__option {
     color: #000;
+}
+
+
+/* Grids */
+
+
+/* -------------------------------------- */
+
+
+/* Forms */
+
+
+/* Basic styles */
+
+.todo-form .todo-form__input:focus {
+    border-color: #64b5f6;
+}
+
+.todo-form .todo-form__button {
+    color: #64b5f6;
+    border-color: #64b5f6;
 }
 
 

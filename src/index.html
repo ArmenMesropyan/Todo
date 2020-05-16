@@ -34,7 +34,10 @@
                     </h1>
                 </li>
                 <li class="actions__item theme">
-                    <select name="theme-choice" id="theme-choice" class="theme__select">
+                    <p id="theme__description" class="visually-hidden">
+                        Choose your theme!
+                    </p>
+                    <select name="theme-choice" id="theme-choice" class="theme__select" aria-describedby="theme__description">
                         <option value="default" class="theme__option theme__option_default" selected>
                             Default
                         </option>
@@ -51,19 +54,21 @@
     </header>
     <main class="todo">
         <section class="todo__form todo-form">
-            <h2 class="todo-form__title visually-hidden">
-                Todo adding form.
-            </h2>
-            <form name="todoForm" class="todo-form__form">
-                <fieldset class="todo-form__task">
-                    <label for="task" class="visually-hidden">
-                        Write your task!
-                    </label>
+            <div class="container">
+                <h2 class="todo-form__title visually-hidden">
+                    Todo adding form.
+                </h2>
+                <form name="todoForm" class="todo-form__form">
+                    <fieldset class="todo-form__task">
+                        <label for="task" class="visually-hidden">
+                            Write your task!
+                        </label>
 
-                    <input type="text" class="todo-form__input" placeholder="Write your task" name="task" id="task" aria-required="true" required>
-                </fieldset>
-                <button type="submit" class="todo-form__button">Add</button>
-            </form>
+                        <input type="text" class="todo-form__input" placeholder="Write your task" name="task" id="task" aria-required="true" required>
+                    </fieldset>
+                    <button type="submit" class="todo-form__button button-outline">Add</button>
+                </form>
+            </div>
         </section>
         <section class="todo__lists todo-lists">
             <h2 class="todo-lists__title visually-hidden">
