@@ -107,6 +107,7 @@ img {
 
 .main-header__actions {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     padding: 10px 0;
@@ -139,6 +140,7 @@ img {
 
 .todo-form__form {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     text-align: center;
     margin: 40px 0;
@@ -229,6 +231,31 @@ img {
 
 
 /* Grids  */
+
+.todo-lists__item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 5px 40px;
+}
+
+.todo-lists__title {
+    flex-grow: 1;
+    margin-left: 20px;
+}
+
+.todo-lists__actions {
+    display: flex;
+    align-items: center;
+}
+
+.todo-lists__aciton button {
+    margin: 0;
+}
+
+.todo-lists__aciton_edit {
+    margin-right: 10px;
+}
 
 
 /* ----------------------------------------------- */
