@@ -61,7 +61,9 @@ img {
 .todo-lists__aciton,
 .todo-list__checkbox label,
 .theme__select,
-.actions__item {
+.actions__item,
+.todo-form__input,
+.todo-form__task {
     margin: 0;
     padding: 0;
 }
@@ -134,6 +136,22 @@ img {
 
 
 /* Grids */
+
+.todo-form__form {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin: 40px 0;
+}
+
+.todo-form__task {
+    margin-right: 10px;
+    min-width: 350px;
+}
+
+.todo-form__button {
+    margin: 0;
+}
 
 
 /* --------------------------------------- */
