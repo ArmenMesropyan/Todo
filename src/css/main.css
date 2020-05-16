@@ -59,7 +59,9 @@ img {
 .todo-list__checkbox,
 .todo-lists__title,
 .todo-lists__aciton,
-.todo-list__checkbox label {
+.todo-list__checkbox label,
+.theme__select,
+.actions__item {
     margin: 0;
     padding: 0;
 }
@@ -100,6 +102,17 @@ img {
 
 
 /* Grids */
+
+.main-header__actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.theme__select {
+    padding: 0 20px;
+}
 
 
 /* -------------------------------------- */
