@@ -42,6 +42,9 @@ function onCheckbox() {
 }
 
 function onDelete(btn) {
+    const deleteConfirm = confirm('Do you really want to delete this task?');
+    if (!deleteConfirm) return;
+
     const li = btn.closest('.todo-lists__item');
     const parent = li.parentElement;
     parent.removeChild(li);
@@ -98,11 +101,25 @@ function checkInputLength(elem) {
     return true;
 }
 
+function setTheme(theme, themes) {
+    document.body.className = theme;
+    const selectedTheme = themes[theme];
+    Object.entries(selectedTheme).forEach(([key, value]) => {
+        document.documentElement.style.setProperty(key, value);
+    });
+}
+
+function onThemeSelect({ target }, themes) {
+    const theme = target.value;
+    setTheme(theme, themes);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     // Elements
 
     const form = document.forms.todoForm;
-    const input = form.querySelector('.todo-form__input');
+    const input = form.elements.task;
+    const themeSelect = document.querySelector('.theme__select');
     const test = [{
             title: 'Do sport',
             done: false,
@@ -112,20 +129,57 @@ document.addEventListener('DOMContentLoaded', () => {
             done: true,
         },
     ];
+    const themes = {
+        default: {
+            '--header-background': '#27cfd4',
+            '--header-color': '#fff',
+            '--border-color': '#fff',
+            '--border-hover': 'rgba(255, 255, 255, 0.554)',
+            '--btn-border': '#64b5f6',
+            '--todo-background': 'rgb(92, 200, 191)',
+            '--todo-color': '#fff',
+            '--todo-border': 'rgb(92, 200, 191)',
+        },
+        black: {
+            '--header-background': '#000',
+            '--header-color': '#fff',
+            '--border-color': '#fff',
+            '--border-hover': 'rgba(255, 255, 255, 0.554)',
+            '--btn-border': '#000',
+            '--todo-background': '#000',
+            '--todo-color': '#fff',
+            '--todo-border': '#fff',
+        },
+        white: {
+            '--header-background': '#fff',
+            '--header-color': '#000',
+            '--border-color': '#000',
+            '--border-hover': '#fff',
+            '--btn-border': '#000',
+            '--todo-background': '#fff',
+            '--todo-color': '#000',
+            '--todo-border': '#000',
+        },
+    };
 
     addTasks(test);
     addListeners();
 
     // Events
 
+    themeSelect.addEventListener('change', (e) => {
+        onThemeSelect(e, themes);
+    });
+
     form.addEventListener('submit', (e) => {
         e.preventDefault();
 
         if (!checkInputLength(input)) {
-            // show input error
+            alert('Please write your task!');
             return;
         }
         addTasks([{ title: input.value }]);
+        form.reset();
         addListeners();
         // addTasksToStorage({ title: input.value });
     });

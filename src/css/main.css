@@ -1,3 +1,36 @@
+/* Variables */
+
+:root {
+    /* Default */
+    --header-background: #27cfd4;
+    --header-color: #fff;
+    --border-color: #fff;
+    --border-hover: rgba(255, 255, 255, 0.554);
+    --btn-border: #64b5f6;
+    --todo-background: rgb(92, 200, 191);
+    --todo-color: #fff;
+    --todo-border: rgb(92, 200, 191);
+    /* Black */
+    /* --header-background: #000;
+    --header-color: #fff;
+    --border-color: #fff;
+    --border-hover: rgba(255, 255, 255, 0.554);
+    --btn-border: #000;
+    --todo-background: #000;
+    --todo-color: #fff;
+    --todo-border: #fff; */
+    /* White */
+    /* --header-background: #fff;
+    --header-color: #000;
+    --border-color: #fff;
+    --border-hover: rgb(59, 55, 55);
+    --btn-border: #000;
+    --todo-background: rgb(255, 255, 255);
+    --todo-color: #000;
+    --todo-border: rgb(0, 0, 0); */
+}
+
+
 /* Main */
 
 *,
@@ -84,8 +117,8 @@ img {
 /* Basic styles */
 
 .main-header {
-    color: #fff;
-    background-color: #64b5f6;
+    color: var(--header-color);
+    background-color: var(--header-background);
 }
 
 .logo__title {
@@ -93,12 +126,12 @@ img {
 }
 
 .theme__select {
-    color: #fff;
-    border-color: #2a8689;
+    color: var(--header-color);
+    border-color: var(--border-color);
 }
 
 .theme__select:focus {
-    border-color: rgba(255, 255, 255, 0.554);
+    border-color: var(--border-hover);
 }
 
 .theme__option {
@@ -134,8 +167,8 @@ img {
 }
 
 .todo-form .todo-form__button {
-    color: #64b5f6;
-    border-color: #64b5f6;
+    color: var(--btn-border);
+    border-color: var(--btn-border);
 }
 
 
@@ -168,9 +201,10 @@ img {
 /* Basic styles */
 
 .todo-lists__item {
-    background-color: rgb(92, 200, 191);
+    background-color: var(--todo-background);
     border-radius: 20px;
-    color: #fff;
+    border: 1px solid var(--todo-border);
+    color: var(--todo-color);
 }
 
 .todo-lists__item_done .todo-lists__title {
@@ -230,6 +264,12 @@ img {
     border-radius: 50%;
     max-height: 25px;
     background-size: 50%;
+}
+
+.black .todo-lists__aciton_edit button,
+.white .todo-lists__aciton_edit button {
+    background-color: #fff;
+    background-image: url(../img/edit-black.png);
 }
 
 

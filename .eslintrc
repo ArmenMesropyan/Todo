@@ -15,6 +15,7 @@
     "indent": "off",
     "no-useless-return": "off",
     "no-param-reassign": "off",
-    "linebreak-style": "off"
+    "linebreak-style": "off",
+    "no-restricted-globals": "off"
   }
 }
