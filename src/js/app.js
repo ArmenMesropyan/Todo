@@ -127,7 +127,7 @@ function addListeners() {
 
 function checkInput(elem) {
     const { value } = elem;
-    const storage = JSON.parse(localStorage.getItem('tasks'));
+    const storage = JSON.parse(localStorage.getItem('tasks')) || [];
     if (!value || value.length > 14) return 'Please check your task length!';
     if (storage.length) {
         const isValueExist = storage.find((item) => item.title === value);
@@ -170,7 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.forms.todoForm;
     const input = form.elements.task;
     const themeSelect = document.querySelector('.theme__select');
-    const tasks = JSON.parse(localStorage.getItem('tasks'));
+    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
     const themes = {
         default: {
             '--header-background': '#27cfd4',
