@@ -211,14 +211,17 @@ img {
     height: 20px;
     background-color: #fff;
     background-repeat: no-repeat;
-    border: 1px solid rgba(0, 0, 0, 0.315);
     cursor: pointer;
     background-size: 100%;
 }
 
+.white .todo-list__checkbox input::before {
+    border: 1px solid rgba(0, 0, 0, 0.315);
+}
+
 .todo-list__checkbox input:checked::before {
     display: block;
-    background-image: url(../img/checked.png);
+    background-image: url(../img/checked.svg);
 }
 
 .todo-lists__aciton button {
@@ -228,29 +231,36 @@ img {
 
 .todo-lists__aciton_edit button {
     background-color: #11eff6;
-    background-image: url(../img/edit.png);
+    background-image: url(../img/edit.svg);
     background-repeat: no-repeat;
     background-position: center;
     padding: 0 10px;
     border-radius: 50%;
     max-height: 25px;
+    background-size: 80%;
+    background-position-x: right;
 }
 
 .todo-lists__aciton_delete button {
     background-color: #fff;
-    background-image: url(../img/delete.png);
+    background-image: url(../img/delete.svg);
     background-repeat: no-repeat;
     background-position: center;
     padding: 0 10px;
     border-radius: 50%;
     max-height: 25px;
-    background-size: 50%;
+    background-size: 60%;
 }
 
 .black .todo-lists__aciton_edit button,
 .white .todo-lists__aciton_edit button {
     background-color: #fff;
-    background-image: url(../img/edit-black.png);
+    background-image: url(../img/edit-black.svg);
+}
+
+.black .todo-lists__aciton_delete button,
+.white .todo-lists__aciton_delete button {
+    background-image: url(../img/delete-black.svg);
 }
 
 
@@ -263,9 +273,18 @@ img {
     padding: 5px 40px;
 }
 
+.todo-list__checkbox {
+    margin-right: 20px;
+    height: 20px;
+}
+
+.todo-list__checkbox input {
+    width: 20px;
+    height: 20px;
+}
+
 .todo-lists__title {
     flex-grow: 1;
-    margin-left: 20px;
 }
 
 .todo-lists__actions {
@@ -307,18 +326,15 @@ footer {
     margin-top: auto;
 }
 
+
+/* --------------------------------------- */
+
+
+/* Media */
+
 @media only screen and (max-width: 485px) {
     .todo-form__input {
         max-width: 280px;
         margin-bottom: 20px;
-    }
-    .todo-lists__item {
-        display: flex;
-        flex-direction: column;
-        align-items: baseline;
-    }
-    .todo-lists__title {
-        margin: 0;
-        margin-bottom: 10px;
     }
 }
