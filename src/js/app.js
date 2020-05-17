@@ -34,11 +34,33 @@ function addTasks(tasks) {
     });
 }
 
+function changeCheckInStorage(bool, elem) {
+    const storage = JSON.parse(localStorage.getItem('tasks'));
+    const title = elem.querySelector('.todo-lists__title').innerHTML;
+    storage.forEach((task) => {
+        if (task.title === title.trim()) task.done = bool;
+    });
+    localStorage.setItem('tasks', JSON.stringify(storage));
+}
+
 function onCheckbox() {
     const checkbox = this;
     const parent = checkbox.closest('li');
-    if (checkbox.checked) parent.classList.add('todo-lists__item_done');
-    else parent.classList.remove('todo-lists__item_done');
+    if (checkbox.checked) {
+        parent.classList.add('todo-lists__item_done');
+        changeCheckInStorage(true, parent);
+    } else {
+        parent.classList.remove('todo-lists__item_done');
+        changeCheckInStorage(false, parent);
+    }
+}
+
+function deleteInStorage(li) {
+    const title = li.querySelector('.todo-lists__title').innerHTML.trim();
+    const tasks = JSON.parse(localStorage.getItem('tasks'));
+    const res = tasks.filter((task) => task.title !== title);
+
+    localStorage.setItem('tasks', JSON.stringify(res));
 }
 
 function onDelete(btn) {
@@ -49,18 +71,27 @@ function onDelete(btn) {
     const parent = li.parentElement;
     parent.removeChild(li);
 
-    // delteInStorage();
+    deleteInStorage(li);
+}
+
+function editInStorage(current, next) {
+    const storage = JSON.parse(localStorage.getItem('tasks'));
+    storage.forEach((task) => {
+        if (task.title === current.trim()) task.title = next.trim();
+    });
+    localStorage.setItem('tasks', JSON.stringify(storage));
 }
 
 function onEdit(btn) {
     const edit = prompt('Write something');
     const parent = btn.closest('.todo-lists__item');
     const title = parent.querySelector('h3');
+    const currentText = title.innerHTML;
 
     if (!edit) return;
 
     title.innerHTML = edit;
-    // editInStorage();
+    editInStorage(currentText, edit);
 }
 
 function addCheckboxsListeners() {
@@ -94,14 +125,22 @@ function addListeners() {
     addActionsListeners();
 }
 
-function checkInputLength(elem) {
+function checkInput(elem) {
     const { value } = elem;
-    if (!value || value.length > 14) return false;
+    const storage = JSON.parse(localStorage.getItem('tasks'));
+    if (!value || value.length > 14) return 'Please check your task length!';
+    if (storage.length) {
+        const isValueExist = storage.find((item) => item.title === value);
+        if (isValueExist) return 'This task already exist!';
+    }
 
-    return true;
+    return '';
 }
 
 function setTheme(theme, themes) {
+    const select = document.querySelector('.theme__select');
+    select.value = theme;
+
     document.body.className = theme;
     const selectedTheme = themes[theme];
     Object.entries(selectedTheme).forEach(([key, value]) => {
@@ -112,6 +151,17 @@ function setTheme(theme, themes) {
 function onThemeSelect({ target }, themes) {
     const theme = target.value;
     setTheme(theme, themes);
+    localStorage.setItem('theme', theme);
+}
+
+function addTaskToStorage(task) {
+    const tasks = localStorage.getItem('tasks');
+    let storage;
+    if (!tasks) storage = [];
+    else storage = JSON.parse(tasks);
+
+    storage.push(task);
+    localStorage.setItem('tasks', JSON.stringify(storage));
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -120,15 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.forms.todoForm;
     const input = form.elements.task;
     const themeSelect = document.querySelector('.theme__select');
-    const test = [{
-            title: 'Do sport',
-            done: false,
-        },
-        {
-            title: 'Wake up at 5:00 AM',
-            done: true,
-        },
-    ];
+    const tasks = JSON.parse(localStorage.getItem('tasks'));
     const themes = {
         default: {
             '--header-background': '#27cfd4',
@@ -161,9 +203,12 @@ document.addEventListener('DOMContentLoaded', () => {
             '--todo-border': '#000',
         },
     };
+    const theme = localStorage.getItem('theme') || 'default';
 
-    addTasks(test);
+    addTasks(tasks);
     addListeners();
+
+    setTheme(theme, themes);
 
     // Events
 
@@ -173,14 +218,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     form.addEventListener('submit', (e) => {
         e.preventDefault();
-
-        if (!checkInputLength(input)) {
-            alert('Please write your task!');
+        const msg = checkInput(input);
+        if (msg) {
+            alert(msg);
             return;
         }
         addTasks([{ title: input.value }]);
+        addTaskToStorage({ title: input.value });
         form.reset();
         addListeners();
-        // addTasksToStorage({ title: input.value });
     });
 });
