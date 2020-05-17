@@ -1,4 +1,4 @@
-// functions
+// Functions
 
 function taskTemplate({ title, done }) {
     return `
@@ -128,7 +128,7 @@ function addListeners() {
 function checkInput(elem) {
     const { value } = elem;
     const storage = JSON.parse(localStorage.getItem('tasks')) || [];
-    if (!value || value.length > 14) return 'Please check your task length!';
+    if (!value || value.length > 20) return 'Please check your task length!';
     if (storage.length) {
         const isValueExist = storage.find((item) => item.title === value);
         if (isValueExist) return 'This task already exist!';

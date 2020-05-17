@@ -1,7 +1,6 @@
 /* Variables */
 
 :root {
-    /* Default */
     --header-background: #27cfd4;
     --header-color: #fff;
     --border-color: #fff;
@@ -10,24 +9,6 @@
     --todo-background: rgb(92, 200, 191);
     --todo-color: #fff;
     --todo-border: rgb(92, 200, 191);
-    /* Black */
-    /* --header-background: #000;
-    --header-color: #fff;
-    --border-color: #fff;
-    --border-hover: rgba(255, 255, 255, 0.554);
-    --btn-border: #000;
-    --todo-background: #000;
-    --todo-color: #fff;
-    --todo-border: #fff; */
-    /* White */
-    /* --header-background: #fff;
-    --header-color: #000;
-    --border-color: #fff;
-    --border-hover: rgb(59, 55, 55);
-    --btn-border: #000;
-    --todo-background: rgb(255, 255, 255);
-    --todo-color: #000;
-    --todo-border: rgb(0, 0, 0); */
 }
 
 
@@ -324,4 +305,20 @@ img {
 footer {
     text-align: center;
     margin-top: auto;
+}
+
+@media only screen and (max-width: 485px) {
+    .todo-form__input {
+        max-width: 280px;
+        margin-bottom: 20px;
+    }
+    .todo-lists__item {
+        display: flex;
+        flex-direction: column;
+        align-items: baseline;
+    }
+    .todo-lists__title {
+        margin: 0;
+        margin-bottom: 10px;
+    }
 }
